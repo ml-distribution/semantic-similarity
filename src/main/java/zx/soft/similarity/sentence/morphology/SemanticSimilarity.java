@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import zx.soft.similarity.sentence.SegmentProxy;
-import zx.soft.similarity.sentence.SentenceSimilarity;
 import zx.soft.similarity.sentence.SegmentProxy.Word;
+import zx.soft.similarity.sentence.SentenceSimilarity;
 import zx.soft.similarity.word.WordSimilarity;
 import zx.soft.similarity.word.hownet2.concept.XiaConceptParser;
 
@@ -16,12 +16,12 @@ import zx.soft.similarity.word.hownet2.concept.XiaConceptParser;
  * 《中文信息相似度计算理论与方法》5.4.3小节所介绍的基于词形和词序的句子相似度计算算法
  * 在考虑语义时，无法直接获取OnceWS(A, B)，为此，通过记录两个句子的词语匹配对中相似度
  * 大于某一阈值的词语对最为相同词语，计算次序相似度。
- * 
- * 
+ *
+ *
  */
 public class SemanticSimilarity implements SentenceSimilarity {
 
-	private static Logger LOG = LoggerFactory.getLogger(SemanticSimilarity.class);
+	private static Logger logger = LoggerFactory.getLogger(SemanticSimilarity.class);
 
 	/** 词形相似度占总相似度的比重 */
 	private final double LAMBDA1 = 0.8;
@@ -46,7 +46,7 @@ public class SemanticSimilarity implements SentenceSimilarity {
 	}
 
 	private SemanticSimilarity() {
-		LOG.debug("used hownet wordsimilarity.");
+		logger.debug("used hownet wordsimilarity.");
 		this.wordSimilarity = XiaConceptParser.getInstance();
 		//this.segmenter = SegmentFactory.getInstance().getParser();
 	}
@@ -115,13 +115,13 @@ public class SemanticSimilarity implements SentenceSimilarity {
 
 		double total_score = 0;
 
-		//从scores[][]中挑选出最大的一个相似度，然后减去该元素(通过Flags数组表示)，进一步求剩余元素中的最大相似度    	    	
+		//从scores[][]中挑选出最大的一个相似度，然后减去该元素(通过Flags数组表示)，进一步求剩余元素中的最大相似度
 		while (true) {
 			double max_score = 0;
 			int max_row = -1;
 			int max_col = -1;
 
-			//先挑出相似度最大的一对：<row, column, max_score> 
+			//先挑出相似度最大的一对：<row, column, max_score>
 			for (int i = 0; i < scores.length; i++) {
 				if (firstFlags[i])
 					continue;

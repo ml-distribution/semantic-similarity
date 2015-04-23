@@ -8,12 +8,12 @@ import java.util.Map;
 
 /**
  * 文档的特征
- * 
+ *
  */
 public class Feature {
 
 	/** 每个关键词在不同类别中出现的文档数量 */
-	private Map<String, Integer> docCountMap = new HashMap<String, Integer>();
+	private Map<String, Integer> docCountMap = new HashMap<>();
 	/** 特征名称 */
 	private String name;
 
@@ -54,7 +54,7 @@ public class Feature {
 	public void readFields(DataInput in) throws IOException {
 		this.name = in.readUTF();
 
-		docCountMap = new HashMap<String, Integer>();
+		docCountMap = new HashMap<>();
 		int size = in.readInt();
 		for (int i = 0; i < size; i++) {
 			String category = in.readUTF();

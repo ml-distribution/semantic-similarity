@@ -33,13 +33,13 @@ import com.google.common.collect.Multimap;
  * <ol>
  * 	<li>两个义原集合的运算方式，支持均值方式或Fuzzy方式</li>
  * </ol>
- * 
+ *
  * @see zx.soft.similarity.Similaritable
  */
 public abstract class BaseConceptParser implements HownetMeta, WordSimilarity {
 
 	/** the logger */
-	protected Logger LOG = LoggerFactory.getLogger(this.getClass());
+	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	/** 所有概念存放的对象 */
 	private static Multimap<String, Concept> CONCEPTS = null;
@@ -85,7 +85,7 @@ public abstract class BaseConceptParser implements HownetMeta, WordSimilarity {
 
 	/**
 	 * 从XML格式文件输入流中加载概念知识。用户自定义的领域概念，也可以通过该方式加载到词典中
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	private static void load(InputStream input) throws IOException {
@@ -122,7 +122,7 @@ public abstract class BaseConceptParser implements HownetMeta, WordSimilarity {
 
 	/**
 	 * 获取两个词语的相似度，如果一个词语对应多个概念，则返回相似度最大的一对
-	 * 
+	 *
 	 * @param word1
 	 * @param word2
 	 * @see ke.commons.similarity.Similariable
@@ -152,7 +152,7 @@ public abstract class BaseConceptParser implements HownetMeta, WordSimilarity {
 
 	/**
 	 * 根据名称获取对应的概念定义信息，由于一个词语可能对应多个概念，因此返回一个集合
-	 * 
+	 *
 	 * @param key 要查找的概念名称
 	 * @return
 	 */
@@ -163,7 +163,7 @@ public abstract class BaseConceptParser implements HownetMeta, WordSimilarity {
 	/**
 	 * 获取两个概念之间的相似度，如果两个概念的词性都不相同，则直接返回0;
 	 * 否则，计算对应义元的相似度，并加权求和
-	 * 
+	 *
 	 * @param c1 第一个参与运算的概念
 	 * @param c2 第二个参与运算的概念
 	 * @return
@@ -202,7 +202,7 @@ public abstract class BaseConceptParser implements HownetMeta, WordSimilarity {
 	/**
 	 * 计算两个义原集合的相似度，每一个集合都是一个概念的某一类义原集合，如第二基本义原、符号义原、关系义原等，
 	 * 可以采用多种方式计算两个义原集合的相似度，如均值法、Fuzzy运算等
-	 * 
+	 *
 	 * @param set1 义原集合1
 	 * @param set2 义原集合2
 	 * @return
@@ -221,7 +221,7 @@ public abstract class BaseConceptParser implements HownetMeta, WordSimilarity {
 	}
 
 	/**
-	 * 考虑到义原集合中的义原先后关系影响不大，因此计算两个集合的义原相似度的平均值作为这两个义原集合的相似度, 
+	 * 考虑到义原集合中的义原先后关系影响不大，因此计算两个集合的义原相似度的平均值作为这两个义原集合的相似度,
 	 * 即此处采用的是均值方法：
 	 * The rank of a value assignment is the average of the weights of the constituent values.
 	 * @param sememes1
@@ -314,7 +314,7 @@ public abstract class BaseConceptParser implements HownetMeta, WordSimilarity {
 	 * @return
 	 */
 	protected double getSimilarity_Fuzzy(String[] sememes1, String[] sememes2) {
-		//@ TODO 
+		//@ TODO
 		return 0.0;
 	}
 

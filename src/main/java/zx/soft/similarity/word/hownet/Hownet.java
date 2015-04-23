@@ -12,15 +12,15 @@ import zx.soft.similarity.word.hownet2.sememe.BaseSememeParser;
 import zx.soft.similarity.word.hownet2.sememe.XiaSememeParser;
 
 /**
- * Hownet的主控制类, 通过知网的概念和义原及其关系计算汉语词语之间的相似度. 
+ * Hownet的主控制类, 通过知网的概念和义原及其关系计算汉语词语之间的相似度.
  * 相似度的计算理论参考论文《汉语词语语义相似度计算研究》
- * 
+ *
  * @see zx.soft.similarity.Similaritable
  */
 public class Hownet implements Similaritable {
 
 	/** the logger */
-	private static final Logger LOG = LoggerFactory.getLogger(Hownet.class);
+	private static final Logger logger = LoggerFactory.getLogger(Hownet.class);
 	/** 知网的单例 */
 	private static Hownet instance = null;
 
@@ -31,8 +31,8 @@ public class Hownet implements Similaritable {
 			BaseSememeParser sememeParser = new XiaSememeParser();
 			conceptParser = new XiaConceptParser(sememeParser);
 		} catch (IOException e) {
+			logger.error("Exception:{}", e.getMessage());
 			e.printStackTrace();
-			LOG.error(e.toString());
 		}
 	}
 
@@ -44,7 +44,6 @@ public class Hownet implements Similaritable {
 		if (null == instance) {
 			instance = new Hownet();
 		}
-
 		return instance;
 	}
 

@@ -11,7 +11,7 @@ import java.util.Set;
 
 /**
  * 拼音处理的工具，负责从拼音词典加载内容，根据汉字词语或汉字查找拼音
- * 
+ *
  */
 public class PinyinUtils {
 
@@ -61,7 +61,7 @@ public class PinyinUtils {
 	public Set<String> getPinyin(Character hanzi) {
 		Set<String> set = pinyinDict.get(hanzi);
 		if (set == null || set.size() == 0) {
-			set = new HashSet<String>();
+			set = new HashSet<>();
 			set.add(hanzi.toString());
 		}
 		return set;
@@ -73,7 +73,7 @@ public class PinyinUtils {
 	 * @return
 	 */
 	public Set<String> getPinyin(String word) {
-		Set<String> word_set = new HashSet<String>();
+		Set<String> word_set = new HashSet<>();
 		for (int i = 0; i < word.length(); i++) {
 			Set<String> hanzi_set = getPinyin(word.charAt(i));
 			if (word_set == null || word_set.size() == 0) {
@@ -81,7 +81,7 @@ public class PinyinUtils {
 				continue;
 			}
 
-			Set<String> tmp_set = new HashSet<String>();
+			Set<String> tmp_set = new HashSet<>();
 			for (String w : word_set) {
 				for (String h : hanzi_set) {
 					tmp_set.add(w + h);
@@ -139,7 +139,7 @@ public class PinyinUtils {
 		private Map<Character, Set<String>> pinyins = null;
 
 		public MyTraverseEvent() {
-			this.pinyins = new HashMap<Character, Set<String>>();
+			this.pinyins = new HashMap<>();
 		}
 
 		public Map<Character, Set<String>> getPinyins() {
@@ -156,7 +156,7 @@ public class PinyinUtils {
 			String pinyin = item.substring(2, item.length());
 			Set<String> set = pinyins.get(hanzi);
 			if (set == null) {
-				set = new HashSet<String>();
+				set = new HashSet<>();
 			}
 			set.add(pinyin);
 

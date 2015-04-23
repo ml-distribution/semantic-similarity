@@ -11,6 +11,7 @@ public class SimilarityFactory {
 	private static SentenceSimilarity sentenceSimilarity = MorphoSimilarity.getInstance();
 
 	private SimilarityFactory() {
+		//
 	}
 
 	public static WordSimilarity getWordSimilarity() {

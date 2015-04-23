@@ -22,7 +22,7 @@ import com.google.common.collect.Multimap;
 
 /**
  * 临时训练及测试类
- * 
+ *
  */
 public class Training {
 
@@ -61,10 +61,10 @@ public class Training {
 
 	/**
 	 * 该方法用于统计知网提供的情感词集合所涉及的义原以及出现频度
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	void countSentimentDistribution() throws IOException {
-		Map<String, Integer> sememeMap = new HashMap<String, Integer>();
+		Map<String, Integer> sememeMap = new HashMap<>();
 		File f = new File("./dict/sentiment/负面情感词语（中文）.txt");
 		String encoding = "utf-8";
 		boolean autoCombineConcept = false;
@@ -125,7 +125,7 @@ public class Training {
 		for (String key : sememeMap.keySet()) {
 			map2.put(sememeMap.get(key), key);
 		}
-		List<Integer> keys = new ArrayList<Integer>();
+		List<Integer> keys = new ArrayList<>();
 		for (Integer key : map2.keySet()) {
 			keys.add(key);
 		}
@@ -161,7 +161,7 @@ public class Training {
 		training.countSentimentDistribution();
 		//        System.out.println("test positive:");
 		//        training.test(true);
-		//        
+		//
 		//        System.out.println("test negative:");
 		//training.test(false);
 	}

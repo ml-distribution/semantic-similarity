@@ -13,7 +13,7 @@ import zx.soft.similarity.word.hownet2.sememe.XiaSememeParser;
 /**
  * 概念解析器的实现,用于获取概念、计算概念的相似度等, 与原论文比较，加入了剪枝处理，
  * 当组合过多的时候，就自动停止后面的组合情况， 保证运行速度
- * 
+ *
  */
 public class XiaConceptParser extends BaseConceptParser {
 
@@ -66,7 +66,7 @@ public class XiaConceptParser extends BaseConceptParser {
 
 	/**
 	 * 获取两个词语的相似度，如果一个词语对应多个概念，则返回相似度最大的一对
-	 * 
+	 *
 	 * @param word1
 	 * @param word2
 	 * @return
@@ -116,13 +116,13 @@ public class XiaConceptParser extends BaseConceptParser {
 
 	/**
 	 * 把未登录词进行概念切分, 形成多个概念的线性链表，并倒排组织, 如“娱乐场”切分完毕后存放成: 【场】 → 【娱乐】
-	 * 
+	 *
 	 * @param oov_word
 	 *            未登录词
 	 * @return
 	 */
 	private List<String> segmentOOV(String oov_word, int topN) {
-		List<String> results = new LinkedList<String>();
+		List<String> results = new LinkedList<>();
 
 		String word = oov_word;
 		int count = 0;
@@ -144,7 +144,7 @@ public class XiaConceptParser extends BaseConceptParser {
 
 	/**
 	 * 计算未登录词语oov_word自动组合语义
-	 * 
+	 *
 	 * @param oov_word
 	 *            未登录词，此处指知网概念中未出现的词语，需要进行切分,求解组合语义，
 	 *            组合的语义关系通过参照概念refConcepts进行修正
@@ -195,7 +195,7 @@ public class XiaConceptParser extends BaseConceptParser {
 	 * 如对于娱乐场，first="娱乐" second="场", 另外，
 	 * 还需要修正第一个概念中的符号义原对于第二个概念主义原的实际关系，当参照概念起作用时，
 	 * 即大于指定的阈值，则需要判断是否把当前义原并入组合概念中，对于第一个概念，还需要同时修正符号关系, 符合关系与参照概念保持一致.
-	 * 
+	 *
 	 * @param head
 	 *            第一个概念
 	 * @param tail
@@ -292,7 +292,7 @@ public class XiaConceptParser extends BaseConceptParser {
 
 	/**
 	 * 获取概念的所有义原
-	 * 
+	 *
 	 * @param concept
 	 * @param includeMainSememe
 	 *            是否包含主义原
@@ -322,7 +322,7 @@ public class XiaConceptParser extends BaseConceptParser {
 
 	/**
 	 * 去掉义原的关系或者符号
-	 * 
+	 *
 	 * @param sememe
 	 *            原始义原
 	 * @return 去掉义原的关系或者符号的数值

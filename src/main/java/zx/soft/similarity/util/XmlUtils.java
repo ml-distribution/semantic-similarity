@@ -40,7 +40,7 @@ import org.xml.sax.SAXException;
 
 /**
  * Encapsulating XML common operations.
- * 
+ *
  */
 public final class XmlUtils {
 
@@ -52,7 +52,7 @@ public final class XmlUtils {
 
 	/**
 	 * Creates a new document instance.
-	 * 
+	 *
 	 * @return a new document instance
 	 * @throws XmlException
 	 *           problem creating a new document
@@ -71,7 +71,7 @@ public final class XmlUtils {
 
 	/**
 	 * Parses the content of the given XML file as an XML document.
-	 * 
+	 *
 	 * @param file
 	 *          the XML file instance
 	 * @return the document instance representing the entire XML document
@@ -85,7 +85,7 @@ public final class XmlUtils {
 
 	/**
 	 * Parses the content of the given stream as an XML document.
-	 * 
+	 *
 	 * @param in
 	 *          the XML file input stream
 	 * @return the document instance representing the entire XML document
@@ -109,7 +109,7 @@ public final class XmlUtils {
 				try {
 					in.close();
 				} catch (IOException e) {
-					// nothing to do
+					// TODO
 				}
 			}
 		}
@@ -119,7 +119,7 @@ public final class XmlUtils {
 
 	/**
 	 * Creates a root element as well as a new document with specific tag name.
-	 * 
+	 *
 	 * @param tagName
 	 *          the name of the root element
 	 * @return a new element instance
@@ -135,7 +135,7 @@ public final class XmlUtils {
 
 	/**
 	 * Gets the root element from input stream.
-	 * 
+	 *
 	 * @param in
 	 *          the XML file input stream
 	 * @return the root element of parsed document
@@ -148,7 +148,7 @@ public final class XmlUtils {
 
 	/**
 	 * Gets the root element from given XML file.
-	 * 
+	 *
 	 * @param fileName
 	 *          the name of the XML file
 	 * @return the root element of parsed document
@@ -161,7 +161,7 @@ public final class XmlUtils {
 
 	/**
 	 * Gets the root element from the given XML payload.
-	 * 
+	 *
 	 * @param payload
 	 *          the XML payload representing the XML file.
 	 * @return the root element of parsed document
@@ -187,7 +187,7 @@ public final class XmlUtils {
 
 	/**
 	 * Gets the descendant elements list from the parent element.
-	 * 
+	 *
 	 * @param parent
 	 *          the parent element in the element tree
 	 * @param tagName
@@ -196,7 +196,7 @@ public final class XmlUtils {
 	 */
 	public static List<Element> getElements(Element parent, String tagName) {
 		NodeList nodes = parent.getElementsByTagName(tagName);
-		List<Element> elements = new ArrayList<Element>();
+		List<Element> elements = new ArrayList<>();
 
 		for (int i = 0; i < nodes.getLength(); i++) {
 			Node node = nodes.item(i);
@@ -210,7 +210,7 @@ public final class XmlUtils {
 
 	/**
 	 * Gets the immediately descendant element from the parent element.
-	 * 
+	 *
 	 * @param parent
 	 *          the parent element in the element tree
 	 * @param tagName
@@ -229,7 +229,7 @@ public final class XmlUtils {
 
 	/**
 	 * Gets the immediately child elements list from the parent element.
-	 * 
+	 *
 	 * @param parent
 	 *          the parent element in the element tree
 	 * @param tagName
@@ -238,7 +238,7 @@ public final class XmlUtils {
 	 */
 	public static List<Element> getChildElements(Element parent, String tagName) {
 		NodeList nodes = parent.getElementsByTagName(tagName);
-		List<Element> elements = new ArrayList<Element>();
+		List<Element> elements = new ArrayList<>();
 
 		for (int i = 0; i < nodes.getLength(); i++) {
 			Node node = nodes.item(i);
@@ -252,7 +252,7 @@ public final class XmlUtils {
 
 	/**
 	 * Gets the immediately child element from the parent element.
-	 * 
+	 *
 	 * @param parent
 	 *          the parent element in the element tree
 	 * @param tagName
@@ -273,7 +273,7 @@ public final class XmlUtils {
 	 * Gets the value of the child element by tag name under the given parent
 	 * element. If there is more than one child element, return the value of the
 	 * first one.
-	 * 
+	 *
 	 * @param parent
 	 *          the parent element
 	 * @param tagName
@@ -293,7 +293,7 @@ public final class XmlUtils {
 
 	/**
 	 * Appends the child element to the parent element.
-	 * 
+	 *
 	 * @param parent
 	 *          the parent element
 	 * @param tagName
@@ -308,7 +308,7 @@ public final class XmlUtils {
 
 	/**
 	 * Appends the child element as well as value to the parent element.
-	 * 
+	 *
 	 * @param parent
 	 *          the parent element
 	 * @param tagName
@@ -325,7 +325,7 @@ public final class XmlUtils {
 
 	/**
 	 * Appends another element as a child element.
-	 * 
+	 *
 	 * @param parent
 	 *          the parent element
 	 * @param child
@@ -338,7 +338,7 @@ public final class XmlUtils {
 
 	/**
 	 * Appends the CDATA element to the parent element.
-	 * 
+	 *
 	 * @param parent
 	 *          the parent element
 	 * @param tagName
@@ -360,7 +360,7 @@ public final class XmlUtils {
 
 	/**
 	 * Converts the Node/Element instance to XML payload.
-	 * 
+	 *
 	 * @param node
 	 *          the node/element instance to convert
 	 * @return the XML payload representing the node/element
@@ -390,7 +390,7 @@ public final class XmlUtils {
 
 	/**
 	 * Converts the Node/Document/Element instance to XML payload.
-	 * 
+	 *
 	 * @param node
 	 *          the node/document/element instance to convert
 	 * @return the XML payload representing the node/document/element
@@ -421,8 +421,8 @@ public final class XmlUtils {
 
 	/**
 	 * Converts the an XML file to XML payload.
-	 * 
-	 * 
+	 *
+	 *
 	 * @param file
 	 *          the XML file instance
 	 * @return the XML payload representing the XML file
@@ -436,7 +436,7 @@ public final class XmlUtils {
 
 	/**
 	 * Converts the an XML file input stream to XML payload.
-	 * 
+	 *
 	 * @param in
 	 *          the XML file input stream
 	 * @return the payload represents the XML file
@@ -450,7 +450,7 @@ public final class XmlUtils {
 
 	/**
 	 * Saves the node/document/element as XML file.
-	 * 
+	 *
 	 * @param doc
 	 *          the XML node/document/element to save
 	 * @param file
@@ -488,7 +488,7 @@ public final class XmlUtils {
 
 	/**
 	 * Validates the element tree context via given XML schema file.
-	 * 
+	 *
 	 * @param doc
 	 *          the XML document to validate
 	 * @param schemaFile
@@ -502,7 +502,7 @@ public final class XmlUtils {
 
 	/**
 	 * Validates the element tree context via given XML schema file.
-	 * 
+	 *
 	 * @param doc
 	 *          the XML document to validate
 	 * @param schemaStream
@@ -534,7 +534,7 @@ public final class XmlUtils {
 
 	/**
 	 * Transforms the XML content to XHTML/HTML format string with the XSL.
-	 * 
+	 *
 	 * @param payload
 	 *          the XML payload to convert
 	 * @param xsltFile
@@ -568,7 +568,7 @@ public final class XmlUtils {
 
 	/**
 	 * Sets the namespace to specific element.
-	 * 
+	 *
 	 * @param element
 	 *          the element to set
 	 * @param namespace
@@ -585,7 +585,7 @@ public final class XmlUtils {
 
 	/**
 	 * Encode the XML payload to legality character.
-	 * 
+	 *
 	 * @param payload
 	 *          the XML payload to encode
 	 * @return the encoded XML payload

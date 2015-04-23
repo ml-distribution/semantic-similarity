@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import zx.soft.similarity.sentence.SegmentProxy;
-import zx.soft.similarity.sentence.SentenceSimilarity;
 import zx.soft.similarity.sentence.SegmentProxy.Word;
+import zx.soft.similarity.sentence.SentenceSimilarity;
 import zx.soft.similarity.word.WordSimilarity;
 import zx.soft.similarity.word.hownet2.concept.XiaConceptParser;
 
@@ -17,11 +17,11 @@ import zx.soft.similarity.word.hownet2.concept.XiaConceptParser;
  * 《中文信息相似度计算理论与方法》5.4.3小节所介绍的方法，在考虑语义时，
  * 无法直接获取OnceWS(A, B)，因此，采用了两两匹配取最大值的方式。
  * 新的改进算法请参考{@code SemanticSimilarity}
- * 
+ *
  */
 public class MorphoSimilarity implements SentenceSimilarity {
 
-	private static Logger LOG = LoggerFactory.getLogger(MorphoSimilarity.class);
+	private static Logger logger = LoggerFactory.getLogger(MorphoSimilarity.class);
 
 	/** 词形相似度占总相似度的比重 */
 	private final double LAMBDA1 = 1.0;
@@ -42,7 +42,7 @@ public class MorphoSimilarity implements SentenceSimilarity {
 	}
 
 	private MorphoSimilarity() {
-		LOG.debug("used hownet wordsimilarity.");
+		logger.debug("used hownet wordsimilarity.");
 		this.wordSimilarity = XiaConceptParser.getInstance();
 		//this.segmenter = SegmentFactory.getInstance().getParser();
 	}
@@ -53,7 +53,7 @@ public class MorphoSimilarity implements SentenceSimilarity {
 	 * @return
 	 */
 	private String[] filter(String[] word_list) {
-		List<String> results = new ArrayList<String>();
+		List<String> results = new ArrayList<>();
 		for (String w : word_list) {
 			if (!FILTER_CHARS.contains(w)) {
 				results.add(w.toLowerCase());
@@ -105,13 +105,13 @@ public class MorphoSimilarity implements SentenceSimilarity {
 
 		double total_score = 0;
 
-		//从scores[][]中挑选出最大的一个相似度，然后减去该元素，进一步求剩余元素中的最大相似度    	    	
+		//从scores[][]中挑选出最大的一个相似度，然后减去该元素，进一步求剩余元素中的最大相似度
 		while (scores.length > 0) {
 			double max_score = 0;
 			int max_row = 0;
 			int max_col = 0;
 
-			//先挑出相似度最大的一对：<row, column, max_score> 
+			//先挑出相似度最大的一对：<row, column, max_score>
 			for (int i = 0; i < scores.length; i++) {
 				for (int j = 0; j < scores.length; j++) {
 					if (max_score < scores[i][j]) {
@@ -157,14 +157,14 @@ public class MorphoSimilarity implements SentenceSimilarity {
 	//    @SuppressWarnings("unchecked")
 	//	public String[] segment(String sentence){
 	//    	MPWordSegment ws = new MPWordSegment();
-	//    	ws.parseReader(new StringReader(sentence));    	
+	//    	ws.parseReader(new StringReader(sentence));
 	//    	Vector tokens = ws.getTokens();
 	//    	String[] results = new String[tokens.size()];
 	//    	for(int i=0; i<tokens.size(); i++){
 	//    		Token token = (Token)tokens.get(i);
-	//    		results[i] = token.termText();    		
+	//    		results[i] = token.termText();
 	//    	}
-	//    	
+	//
 	//    	return results;
 	//    }
 

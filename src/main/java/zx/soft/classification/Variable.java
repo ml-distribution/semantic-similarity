@@ -14,9 +14,9 @@ import java.util.Map;
 public class Variable {
 
 	/** 类别信息 */
-	Map<String, CategoryInfo> categoryMap = new HashMap<String, CategoryInfo>();
+	Map<String, CategoryInfo> categoryMap = new HashMap<>();
 
-	Map<String, Feature> features = new HashMap<String, Feature>();
+	Map<String, Feature> features = new HashMap<>();
 
 	/** 所有文档的数量 */
 	private int docCount = 0;

@@ -19,15 +19,15 @@ import org.w3c.dom.Element;
 import zx.soft.similarity.util.TraverseEvent;
 
 /**
- * 实现遍历加载义原信息到义原表中, 义原词典的组织以知网导出的格式为标准，如：<br/> 
- * - entity|实体 <br/> 
- * ├ thing|万物 [#time|时间,#space|空间] <br/> 
- * │ ├ physical|物质 [!appearance|外观] <br/> 
- * │ │ ├ animate|生物 [*alive|活着,!age|年龄,*die|死,*metabolize|代谢] <br/> 
- * │ │ │ ├ AnimalHuman|动物 [!sex|性别,*AlterLocation|变空间位置,*StateMental|精神状态] <br/> 
+ * 实现遍历加载义原信息到义原表中, 义原词典的组织以知网导出的格式为标准，如：<br/>
+ * - entity|实体 <br/>
+ * ├ thing|万物 [#time|时间,#space|空间] <br/>
+ * │ ├ physical|物质 [!appearance|外观] <br/>
+ * │ │ ├ animate|生物 [*alive|活着,!age|年龄,*die|死,*metabolize|代谢] <br/>
+ * │ │ │ ├ AnimalHuman|动物 [!sex|性别,*AlterLocation|变空间位置,*StateMental|精神状态] <br/>
  * │ │ │ │<br/>
  * 等等 <br>
- * 
+ *
  * @deprecated
  */
 @Deprecated
@@ -37,7 +37,7 @@ public class SememeDictTraverseEvent implements TraverseEvent<String> {
 	private List<Sememe> sememeList = null;
 
 	public SememeDictTraverseEvent() {
-		this.sememeList = new ArrayList<Sememe>();
+		this.sememeList = new ArrayList<>();
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class SememeDictTraverseEvent implements TraverseEvent<String> {
 	 * ...
 	 * &lt;/sememes>
 	 * @param xmlFile
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void saveToXML(String xmlFile) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -119,7 +119,7 @@ public class SememeDictTraverseEvent implements TraverseEvent<String> {
 	 *   ├ thing|万物 [#time|时间,#space|空间] <br>
 	 *   │ ├ physical|物质 [!appearance|外观] <br>
 	 *   │ │ ├ animate|生物 [*alive|活着,!age|年龄,*die|死,*metabolize|代谢] <br>
-	 * 
+	 *
 	 * @param item
 	 * @return 如果是义原，则info[0]返回层次深度(info[0]>=0); info[1]返回具体的义元内容起始位置；否则info[0]返回-1
 	 */
@@ -148,7 +148,7 @@ public class SememeDictTraverseEvent implements TraverseEvent<String> {
 
 	/**
 	 * 根据字符串判断义元的类型
-	 * 
+	 *
 	 * @param item
 	 * @return
 	 */

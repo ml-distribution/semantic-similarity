@@ -10,7 +10,7 @@ import zx.soft.similarity.word.hownet.HownetMeta;
 
 /**
  * 知网的概念表示类 <br/>example和英文部分对于相似度的计算不起作用，考虑到内存开销， 在概念的表示中去掉了这部分数据的对应定义
- * 
+ *
  */
 public class Concept implements HownetMeta {
 
@@ -54,9 +54,9 @@ public class Concept implements HownetMeta {
 	 * 处理定义，把定义分为第一基本义元、其他基本义元、关系义元和符号义元四类
 	 */
 	private void parseDefine() {
-		List<String> secondList = new ArrayList<String>(); //其他基本义原
-		List<String> relationList = new ArrayList<String>(); //关系义原
-		List<String> symbolList = new ArrayList<String>(); //符号义原
+		List<String> secondList = new ArrayList<>(); //其他基本义原
+		List<String> relationList = new ArrayList<>(); //关系义原
+		List<String> symbolList = new ArrayList<>(); //符号义原
 
 		String tokenString = this.define;
 
@@ -102,7 +102,7 @@ public class Concept implements HownetMeta {
 
 	/**
 	 * 获取第一义元
-	 * 
+	 *
 	 * @return
 	 */
 	public String getMainSememe() {
@@ -111,7 +111,7 @@ public class Concept implements HownetMeta {
 
 	/**
 	 * 获取其他基本义元描述
-	 * 
+	 *
 	 * @return
 	 */
 	public String[] getSecondSememes() {
@@ -120,7 +120,7 @@ public class Concept implements HownetMeta {
 
 	/**
 	 * 获取关系义元描述
-	 * 
+	 *
 	 * @return
 	 */
 	public String[] getRelationSememes() {
@@ -129,7 +129,7 @@ public class Concept implements HownetMeta {
 
 	/**
 	 * 获取符号义元描述
-	 * 
+	 *
 	 * @return
 	 */
 	public String[] getSymbolSememes() {
@@ -137,7 +137,7 @@ public class Concept implements HownetMeta {
 	}
 
 	public Set<String> getAllSememeNames() {
-		Set<String> names = new HashSet<String>();
+		Set<String> names = new HashSet<>();
 
 		//加入主义原
 		names.add(getMainSememe());
@@ -193,7 +193,7 @@ public class Concept implements HownetMeta {
 
 	/**
 	 * 是实词还是虚词
-	 * 
+	 *
 	 * @return true:实词；false:虚词
 	 */
 	public boolean isSubstantive() {
@@ -226,7 +226,7 @@ public class Concept implements HownetMeta {
 
 	/**
 	 * 获取该概念的类型
-	 * 
+	 *
 	 * @return
 	 */
 	public String getType() {

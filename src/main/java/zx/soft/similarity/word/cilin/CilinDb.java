@@ -16,16 +16,16 @@ import zx.soft.similarity.util.TraverseEvent;
 
 /**
  * 词林数据库
- * 
+ *
  */
 public class CilinDb {
 
 	/** the logger */
-	protected static Logger LOG = LoggerFactory.getLogger(CilinDb.class);
+	protected static Logger logger = LoggerFactory.getLogger(CilinDb.class);
 	/** 以词语为主键的索引表 */
-	private final Map<String, Set<String>> wordIndex = new HashMap<String, Set<String>>();
+	private final Map<String, Set<String>> wordIndex = new HashMap<>();
 	/** 以编码为主键的索引表 */
-	private final Map<String, Set<String>> codeIndex = new HashMap<String, Set<String>>();
+	private final Map<String, Set<String>> codeIndex = new HashMap<>();
 
 	private static CilinDb instance = null;
 
@@ -34,7 +34,7 @@ public class CilinDb {
 			try {
 				instance = new CilinDb();
 			} catch (IOException e) {
-				LOG.error(e.toString());
+				logger.error("Exception:{}", e.getMessage());
 			}
 		}
 		return instance;
@@ -48,16 +48,15 @@ public class CilinDb {
 			@Override
 			public boolean visit(String line) {
 				String[] items = line.split(" ");
-				Set<String> set = new HashSet<String>();
+				Set<String> set = new HashSet<>();
 				for (int i = 2; i < items.length; i++) {
 					String code = items[i].trim();
 					if (!code.equals("")) {
 						set.add(code);
-
 						//加入codeIndex编码
 						Set<String> codeWords = codeIndex.get(code);
 						if (codeWords == null) {
-							codeWords = new HashSet<String>();
+							codeWords = new HashSet<>();
 						}
 						codeWords.add(items[0]);
 						codeIndex.put(code, codeWords);
@@ -68,14 +67,13 @@ public class CilinDb {
 				return false;
 			}
 		};
-		LOG.info("loading cilin dictionary...");
+		logger.info("loading cilin dictionary...");
 		long time = System.currentTimeMillis();
 
 		FileUtils.traverseLines(input, "UTF8", event);
 
 		time = System.currentTimeMillis() - time;
-		LOG.info("loading cilin dictionary completely. time elapsed: " + time);
-
+		logger.info("loading cilin dictionary completely. time elapsed:{}", time);
 	}
 
 	/**

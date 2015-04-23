@@ -9,21 +9,27 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import zx.soft.similarity.sentence.SegmentProxy;
 import zx.soft.similarity.sentence.SegmentProxy.Word;
 
 /**
  * 代表一个文档实例
- * 
+ *
  */
 public class Instance {
+
+	private static Logger logger = LoggerFactory.getLogger(Instance.class);
 
 	/** 文档类别 */
 	private String category;
 	/** 文档内容 */
-	private final Set<String> bag = new HashSet<String>();
+	private final Set<String> bag = new HashSet<>();
 
 	public Instance() {
+		//
 	}
 
 	public Instance(String category, File f, String encoding) {
@@ -32,7 +38,7 @@ public class Instance {
 
 		try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(f), encoding));) {
 			while ((line = in.readLine()) != null) {
-				System.out.println(line);
+				//				System.out.println(line);
 				List<Word> words = SegmentProxy.segment(line);
 				for (Word w : words) {
 					if (w.getPos().endsWith("adj") || w.getPos().startsWith("n") || w.getPos().startsWith("v")) {
@@ -41,8 +47,7 @@ public class Instance {
 				}
 			}
 		} catch (IOException e) {
-			System.out.println("current file:" + f.getAbsolutePath());
-			System.out.println("current line:" + line);
+			logger.error("current file:{},current line:{}", f.getAbsolutePath(), line);
 			e.printStackTrace();
 		}
 	}

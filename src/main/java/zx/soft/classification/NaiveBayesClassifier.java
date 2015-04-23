@@ -21,7 +21,7 @@ public class NaiveBayesClassifier {
 	/**
 	 * 词语在所有类别中的总数量
 	 */
-	Map<String, Integer> TERM_TOTAL_COUNT = new HashMap<String, Integer>();
+	Map<String, Integer> TERM_TOTAL_COUNT = new HashMap<>();
 
 	/**
 	 * 训练一篇文档
@@ -33,7 +33,7 @@ public class NaiveBayesClassifier {
 
 	/**
 	 * 保存训练结果
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	void save(File file) throws IOException {
 		DataOutput out = new DataOutputStream(new FileOutputStream(file));

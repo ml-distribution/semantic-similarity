@@ -15,14 +15,14 @@ import zx.soft.similarity.word.hownet.HownetMeta;
 /**
  * 义原解析器, 包括义元数据的加载，义元的组织、索引、查询 以及义元的距离计算和相似度计算等.
  * 算法的核心思想请参看论文《汉语词语语义相似度计算研究》
- * 
+ *
  * @see zx.soft.similarity.Similaritable
  * @deprecated
  */
 @Deprecated
 public abstract class SememeParser implements HownetMeta, Similaritable {
 
-	protected Logger LOG = LoggerFactory.getLogger(this.getClass());
+	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	/** 所有的义原都存放到一个数组之中，并且义元的ID号与数组的下标相同 */
 	protected Sememe[] SEMEMES;
@@ -57,12 +57,12 @@ public abstract class SememeParser implements HownetMeta, Similaritable {
 
 	/**
 	 * 从文件中加载义元知识
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	public void load(InputStream input, String encoding) throws IOException {
 		SememeDictTraverseEvent event = new SememeDictTraverseEvent();
-		LOG.info("loading sememe dictionary...");
+		logger.info("loading sememe dictionary...");
 		long time = System.currentTimeMillis();
 		FileUtils.traverseLines(input, encoding, event);
 		this.SEMEMES = event.getSememes();
@@ -78,13 +78,13 @@ public abstract class SememeParser implements HownetMeta, Similaritable {
 		sememeMap = new FastSimpleMap<String, Integer>(keys, values);
 
 		time = System.currentTimeMillis() - time;
-		LOG.info("sememe dictionary load completely. time elapsed: " + time);
+		logger.info("sememe dictionary load completely. time elapsed:{}", time);
 	}
 
 	/**
-	 * 根据汉语定义计算义元之间的距离,Integer.MAX_VALUE代表两个义元之间的距离为无穷大， 
+	 * 根据汉语定义计算义元之间的距离,Integer.MAX_VALUE代表两个义元之间的距离为无穷大，
 	 * <br/>由于可能多个义元有相同的汉语词语，故计算结果为其中距离最小者
-	 * 
+	 *
 	 * @param key1
 	 * @param key2
 	 * @return
@@ -119,7 +119,7 @@ public abstract class SememeParser implements HownetMeta, Similaritable {
 
 	/**
 	 * 获取两个义元在义原树中的距离
-	 * 
+	 *
 	 * @param sem1
 	 *            第一个义原
 	 * @param sem2
@@ -162,7 +162,7 @@ public abstract class SememeParser implements HownetMeta, Similaritable {
 
 	/**
 	 * 获取从该义元到根节点的路径表示字符串
-	 * 
+	 *
 	 * @param key
 	 * @return
 	 */

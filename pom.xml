@@ -4,37 +4,49 @@
 
 	<groupId>zx.soft</groupId>
 	<artifactId>semantic-similarity</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>Semantic Similarity</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<slf4j.version>1.7.5</slf4j.version>
+		<junit.version>4.11</junit.version>
+		<slf4j.version>1.7.7</slf4j.version>
+		<logback.version>1.1.2</logback.version>
 		<commons.lang3.version>3.3.1</commons.lang3.version>
-		<logback.version>1.1.1</logback.version>
 	</properties>
 
 	<dependencies>
+		<!-- 日志包 -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-access</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
+		<!-- 分词器 -->
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
+			<groupId>org.ansj</groupId>
+			<artifactId>tree_split</artifactId>
+			<version>1.2</version>
 		</dependency>
 		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.3</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
+			<groupId>org.ansj</groupId>
+			<artifactId>ansj_seg</artifactId>
+			<version>1.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -57,16 +69,6 @@
 			<version>13.0.1</version>
 		</dependency>
 		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<version>${logback.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${commons.lang3.version}</version>
@@ -76,15 +78,12 @@
 			<artifactId>google-collections</artifactId>
 			<version>1.0</version>
 		</dependency>
+		<!-- 测试包 -->
 		<dependency>
-			<groupId>org.ansj</groupId>
-			<artifactId>tree_split</artifactId>
-			<version>1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.ansj</groupId>
-			<artifactId>ansj_seg</artifactId>
-			<version>1.3</version>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -93,18 +92,15 @@
 			<id>cengtral</id>
 			<url>http://repo1.maven.org/maven2/</url>
 		</repository>
-
 		<!-- java.net maven repository, for example java mail -->
 		<repository>
 			<id>Java.Net</id>
 			<url>http://download.java.net/maven/2/</url>
 		</repository>
-
 		<repository>
 			<id>ansj-repo</id>
 			<url>http://maven.ansj.org/</url>
 		</repository>
-
 		<repository>
 			<id>info-bliki-repository</id>
 			<url>http://gwtwiki.googlecode.com/svn/maven-repository/</url>
@@ -185,8 +181,21 @@
 			</plugin>
 		</plugins>
 
-		<finalName>rsemantic-similarity</finalName>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 
 	</build>
+
+	<!-- 部署仓库 -->
+	<distributionManagement>
+		<snapshotRepository>
+			<id>zxsoft-snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>http://192.168.3.23:18081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+		<repository>
+			<id>sentiment</id>
+			<url>http://192.168.3.23:18081/nexus/content/repositories/sentiment</url>
+		</repository>
+	</distributionManagement>
 
 </project>

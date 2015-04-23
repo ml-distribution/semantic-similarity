@@ -9,9 +9,14 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import zx.soft.similarity.word.hownet2.concept.XiaConceptParser;
 
 public class LCMC {
+
+	private static Logger logger = LoggerFactory.getLogger(LCMC.class);
 
 	public void countUnConceptWords(File xmlFile) throws Exception {
 		int totalCount = 0, conceptCount = 0;
@@ -35,7 +40,7 @@ public class LCMC {
 			}
 		}//
 		input.close();
-		System.out.println(totalCount + "\t" + conceptCount);
+		logger.info(totalCount + "\t" + conceptCount);
 	}
 
 	public static void main(String[] args) throws Exception {

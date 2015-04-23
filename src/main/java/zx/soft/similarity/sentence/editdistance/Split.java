@@ -69,11 +69,10 @@ public class Split {
 		if (bx.getNext() != null && !bx.getNext().isDivideFlag()) {
 			split(bx.getNext(), LY);
 		}
-
 	}
 
-	/** 
-	 * longest common string
+	/**
+	 * Longest Common String
 	 * @author Gavin
 	 *
 	 */

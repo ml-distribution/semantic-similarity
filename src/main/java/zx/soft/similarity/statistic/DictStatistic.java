@@ -11,13 +11,18 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import zx.soft.similarity.word.hownet2.concept.XiaConceptParser;
 
 /**
  * 用于统计分词词典文件中的概念出现数量
- * 
+ *
  */
 public class DictStatistic {
+
+	private static Logger logger = LoggerFactory.getLogger(DictStatistic.class);
 
 	/**
 	 * 从指定的xml文件加载词典文件
@@ -28,7 +33,7 @@ public class DictStatistic {
 	public void testFromXml(String xmlFile, boolean gzCompressed) {
 		File file = new File(xmlFile);
 		if (!file.canRead()) {
-			System.out.println("无法读取文件:" + xmlFile);
+			logger.error("无法读取文件:{}", xmlFile);
 			return;// fail while opening the file
 		}
 		int count = 0, conceptCount = 0;
@@ -61,7 +66,7 @@ public class DictStatistic {
 								}
 								count++;
 								if (count % 1000 == 0) {
-									System.out.println("process words " + count + "...");
+									logger.info("process words {} ...", count);
 								}
 							}
 						}
@@ -69,9 +74,10 @@ public class DictStatistic {
 				}
 			}
 			input.close();
-			System.out.println(count + "\t" + conceptCount);
+			logger.info(count + "\t" + conceptCount);
 			return;
 		} catch (Exception e) {
+			logger.error("Exception:{}", e.getMessage());
 			e.printStackTrace();
 		}
 	}

@@ -5,6 +5,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import zx.soft.similarity.word.hownet2.concept.BaseConceptParser;
 import zx.soft.similarity.word.hownet2.concept.Concept;
 import zx.soft.similarity.word.hownet2.concept.XiaConceptParser;
@@ -13,9 +16,11 @@ import zx.soft.similarity.word.hownet2.sememe.XiaSememeParser;
 
 /**
  * 基于知网实现的词语倾向性判别
- * 
+ *
  */
 public class HownetWordTendency implements WordTendency {
+
+	private static Logger logger = LoggerFactory.getLogger(HownetWordTendency.class);
 
 	public static String[] POSITIVE_SEMEMES = new String[] { "良", "喜悦", "夸奖", "满意", "期望", "注意", "致敬", "喜欢", "专", "敬佩",
 			"同意", "爱惜", "愿意", "思念", "拥护", "祝贺", "福", "需求", "奖励", "致谢", "欢迎", "羡慕", "感激", "爱恋" };
@@ -30,7 +35,7 @@ public class HownetWordTendency implements WordTendency {
 		try {
 			this.sememeParser = new XiaSememeParser();
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("Exception:{}", e.getMessage());
 		}
 	}
 
@@ -43,7 +48,7 @@ public class HownetWordTendency implements WordTendency {
 
 	public double getSentiment(String word, String[] candidateSememes) {
 		Collection<Concept> concepts = conceptParser.getConcepts(word);
-		Set<String> sememes = new HashSet<String>();
+		Set<String> sememes = new HashSet<>();
 		for (Concept c : concepts) {
 			sememes.addAll(c.getAllSememeNames());
 		}

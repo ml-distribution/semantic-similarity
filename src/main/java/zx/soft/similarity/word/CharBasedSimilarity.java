@@ -7,7 +7,7 @@ import zx.soft.similarity.Similaritable;
 
 /**
  * 字面相似度计算方法
- * 
+ *
  */
 public class CharBasedSimilarity implements Similaritable {
 
@@ -23,7 +23,7 @@ public class CharBasedSimilarity implements Similaritable {
 			return 0.0;
 		}
 
-		List<Character> sameHZ = new ArrayList<Character>();
+		List<Character> sameHZ = new ArrayList<>();
 
 		String longString = word1.length() >= word2.length() ? word1 : word2;
 		String shortString = word1.length() < word2.length() ? word1 : word2;

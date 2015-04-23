@@ -8,15 +8,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 与文件相关的工具类
- * 
+ *
  */
 public class FileUtils {
 
+	private static Logger logger = LoggerFactory.getLogger(FileUtils.class);
+
 	/**
 	 * 根据指定编码从输入流中依次遍历每一行文字
-	 * 
+	 *
 	 * @param input
 	 *            输入流
 	 * @param encoding
@@ -56,11 +61,12 @@ public class FileUtils {
 			out.close();
 			rtn = true;
 		} catch (Exception e) {
-			System.out.println("saveStringToFile error:" + e.getMessage());
+			logger.error("saveStringToFile error:{}", e.getMessage());
 		} finally {
 			try {
 				out.close();
 			} catch (Exception e) {
+				logger.error("Exception:{}", e.getMessage());
 			}
 		}
 		return rtn;
