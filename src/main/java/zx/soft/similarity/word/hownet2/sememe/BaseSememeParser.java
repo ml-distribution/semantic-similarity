@@ -22,14 +22,14 @@ import com.google.common.collect.Multimap;
 /**
  * 义原解析器基类，所有义原存储在xml文件中（当前package中的sememe.xml.tar.gz文件）。<br/>
  * 算法的核心思想请参看论文《汉语词语语义相似度计算研究》或《中文信息相似度计算理论与方法》一书第三章<br/>
- * 
+ *
  * 为提高运算速度，义原的加载方式做了调整，只把义原的汉语定义和对应的Id加入到MultiMap对象中，并通过义原的层次化Id计算义原之间的相似度。<br/>
- * 
+ *
  * @see {@link zx.soft.similarity.Similaritable}
  */
 public abstract class BaseSememeParser implements HownetMeta, Similaritable {
 
-	protected Logger LOG = LoggerFactory.getLogger(this.getClass());
+	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	/** 所有的义原都存放到一个MultiMap, Key为Sememe的中文定义, Value为义原的Id */
 	protected static Multimap<String, String> SEMEMES = null;
@@ -41,15 +41,14 @@ public abstract class BaseSememeParser implements HownetMeta, Similaritable {
 
 		SEMEMES = HashMultimap.create();
 
-		String sememeFile = getClass().getPackage().getName().replaceAll("\\.", "/") + "/sememe.xml.gz";
-		InputStream input = this.getClass().getClassLoader().getResourceAsStream(sememeFile);
+		InputStream input = this.getClass().getClassLoader().getResourceAsStream("data/sememe.xml.gz");
 		input = new GZIPInputStream(input);
 		load(input);
 	}
 
 	/**
 	 * 从文件中加载义元知识
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	public void load(InputStream input) throws IOException {
@@ -86,7 +85,7 @@ public abstract class BaseSememeParser implements HownetMeta, Similaritable {
 
 	/**
 	 * 计算两个义原之间的关联度
-	 * 
+	 *
 	 * @param sememeName1
 	 * @param sememeName2
 	 * @return

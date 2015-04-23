@@ -9,7 +9,7 @@ import zx.soft.similarity.word.hownet.sememe.SememeParser;
 
 /**
  * 刘群老师的相似度计算方式，对概念解析的处理方式
- * 
+ *
  * @deprecated
  */
 @Deprecated
@@ -55,12 +55,12 @@ public class LiuConceptParser extends ConceptParser {
 		Collection<Concept> concepts1 = getConcepts(word1);
 		Collection<Concept> concepts2 = getConcepts(word2);
 
-		//如果是blank，则说明是未登录词, 需要计算组合概念
+		// 如果是blank，则说明是未登录词, 需要计算组合概念
 		if (BlankUtils.isBlank(concepts1) || BlankUtils.isBlank(concepts2)) {
 			return 0.0;
 		}
 
-		//两个for循环分别计算词语所有可能的概念的相似度
+		// 两个for循环分别计算词语所有可能的概念的相似度
 		for (Concept c1 : concepts1) {
 			for (Concept c2 : concepts2) {
 				double v = getSimilarity(c1, c2);

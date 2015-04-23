@@ -104,8 +104,7 @@ public class ConceptDictTraverseEvent implements TraverseEvent<String> {
 	}
 
 	public void saveToXML(File xmlFile) throws Exception {
-		String conceptFile = getClass().getPackage().getName().replaceAll("\\.", "/") + "/concept.dat";
-		InputStream input = this.getClass().getClassLoader().getResourceAsStream(conceptFile);
+		InputStream input = this.getClass().getClassLoader().getResourceAsStream("data/concept.dat");
 		BufferedReader in = new BufferedReader(new InputStreamReader(input, "utf8"));
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

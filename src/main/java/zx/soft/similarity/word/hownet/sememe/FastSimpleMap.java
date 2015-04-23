@@ -7,7 +7,7 @@ import java.util.Collection;
 /**
  * 一种新的Map，跟标准的Map不同，它的的Key可以有重复, 内部采用快速排序和二分查找,
  * 保持较少的变量，结构简单，可根据主键查找返回的结果是一个数组
- * 
+ *
  * @param <T>
  * @param <V>
  * @deprecated
@@ -58,7 +58,7 @@ public class FastSimpleMap<K extends Comparable<K>, V> {
 					results.add(values[i]);
 				}
 
-				break; // break while
+				break;
 			}
 		}
 
@@ -67,20 +67,20 @@ public class FastSimpleMap<K extends Comparable<K>, V> {
 
 	/**
 	 * 根据keys快速排序，排序的同时交换values
-	 * 
+	 *
 	 * @param a
 	 * @param low
 	 * @param high
 	 */
 	private void quicksort(int low, int high) {
-		//low is the lower index, high is the upper index
-		//of the region of array a that is to be sorted
+		// low is the lower index, high is the upper index
+		// of the region of array a that is to be sorted
 		int i = low, j = high;
 		K h;
 		V v;
 		K x = keys[(low + high) >> 1];
 
-		//partition
+		// partition
 		do {
 			while (keys[i].compareTo(x) < 0)
 				i++;
@@ -99,7 +99,7 @@ public class FastSimpleMap<K extends Comparable<K>, V> {
 			}
 		} while (i <= j);
 
-		//  recursion
+		// recursion
 		if (low < j)
 			quicksort(low, j);
 		if (i < high)

@@ -58,14 +58,14 @@ public class ConceptDictTraverseEvent implements TraverseEvent<String> {
 		String define = "";
 		char ch;
 
-		//以符号//开始的是注释行
+		// 以符号//开始的是注释行
 		if (line.startsWith("//")) {
 			return true;
 		}
 
-		int lastPosition = 0; //最近一次处理内容的有意义的开始位置
-		int processFlag = 0; //当前处理部分的标志 0：处理word； 1：词性；2：定义
-		//解析出一行中的概念各项数据
+		int lastPosition = 0; // 最近一次处理内容的有意义的开始位置
+		int processFlag = 0; // 当前处理部分的标志 0：处理word； 1：词性；2：定义
+		// 解析出一行中的概念各项数据
 		loop: for (int position = 0; position < line.length(); position++) {
 			ch = line.charAt(position);
 
@@ -106,8 +106,7 @@ public class ConceptDictTraverseEvent implements TraverseEvent<String> {
 	}
 
 	public void saveToXML(File xmlFile) throws Exception {
-		String conceptFile = getClass().getPackage().getName().replaceAll("\\.", "/") + "/concept.dat";
-		InputStream input = this.getClass().getClassLoader().getResourceAsStream(conceptFile);
+		InputStream input = this.getClass().getClassLoader().getResourceAsStream("data/concept.dat");
 		BufferedReader in = new BufferedReader(new InputStreamReader(input, "utf8"));
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -197,7 +196,7 @@ public class ConceptDictTraverseEvent implements TraverseEvent<String> {
 	}
 
 	public static void main(String[] args) throws Exception {
-		new ConceptDictTraverseEvent().saveToXML(new File("/home/xiatian/Desktop/concept.xml"));
+		new ConceptDictTraverseEvent().saveToXML(new File("/XXX/concept.xml"));
 	}
 
 }

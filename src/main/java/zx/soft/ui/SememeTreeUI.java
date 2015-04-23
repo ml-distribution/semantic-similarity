@@ -40,7 +40,7 @@ import com.google.common.collect.Multimap;
  * 用于显示义原层次树的Tree组件，仅仅为了管理和查看方便，与相似度计算算法无关。 所有内容读自sememe.xml.gz压缩文件。
  * 整个面板由两大部分构成，上面（North）为输入查询的文本框和查询按钮，下面（Center）为JSplitPane，JSplitPane又由
  * JTextArea和JTree组成，JTextArea用于显示查询结果，JTree用于显示层次关系
- * 
+ *
  */
 public class SememeTreeUI extends JFrame {
 
@@ -80,7 +80,7 @@ public class SememeTreeUI extends JFrame {
 
 				/**
 				 * 递归查询符合条件的结果，并把所有结果存入selectedNodes中
-				 * 
+				 *
 				 * @param node
 				 * @param selectedNodes
 				 */
@@ -102,7 +102,7 @@ public class SememeTreeUI extends JFrame {
 
 				/**
 				 * 关闭所有树的节点
-				 * 
+				 *
 				 * @param parent
 				 */
 				@SuppressWarnings("unchecked")
@@ -178,7 +178,7 @@ public class SememeTreeUI extends JFrame {
 
 	/**
 	 * 加载义原到Multimap中，并创建树的节点
-	 * 
+	 *
 	 * @return
 	 * @throws IOException
 	 */
@@ -188,8 +188,7 @@ public class SememeTreeUI extends JFrame {
 		 */
 		Multimap<String, Sememe> sememes = ArrayListMultimap.create();
 
-		String sememeFile = Sememe.class.getPackage().getName().replaceAll("\\.", "/") + "/sememe.xml.gz";
-		InputStream input = Sememe.class.getClassLoader().getResourceAsStream(sememeFile);
+		InputStream input = Sememe.class.getClassLoader().getResourceAsStream("data/sememe.xml.gz");
 		input = new GZIPInputStream(input);
 
 		System.out.println("[" + SememeTreeUI.class.getSimpleName() + "]loading sememes into sememe tree...");

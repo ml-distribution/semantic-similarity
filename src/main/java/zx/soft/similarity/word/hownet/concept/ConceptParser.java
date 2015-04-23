@@ -50,8 +50,7 @@ public abstract class ConceptParser implements HownetMeta, Similaritable {
 		this.sememeParser = sememeParser;
 		synchronized (this) {
 			if (CONCEPTS == null) {
-				String conceptFile = getClass().getPackage().getName().replaceAll("\\.", "/") + "/concept.dat";
-				InputStream input = this.getClass().getClassLoader().getResourceAsStream(conceptFile);
+				InputStream input = this.getClass().getClassLoader().getResourceAsStream("data/concept.dat");
 				load(input, "UTF-8");
 			}
 		}
@@ -136,7 +135,7 @@ public abstract class ConceptParser implements HownetMeta, Similaritable {
 					results.add(CONCEPTS[i]);
 				}
 
-				break; // break while
+				break;
 			}
 		}
 

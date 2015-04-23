@@ -183,14 +183,14 @@ public class MyConceptParser extends ConceptParser {
 	 * @return
 	 */
 	public Concept autoCombineConcept(Concept head, Concept tail, Concept ref) {
-		//一个为null，一个非null，直接返回非null的克隆新概念
+		// 一个为null，一个非null，直接返回非null的克隆新概念
 		if (tail == null && head != null) {
 			return new Concept(head.getWord(), head.getPos(), head.getDefine());
 		} else if (head == null && tail != null) {
 			return new Concept(tail.getWord(), tail.getPos(), tail.getDefine());
 		}
 
-		//第二个概念不是实词，直接返回第一个概念
+		// 第二个概念不是实词，直接返回第一个概念
 		if (!tail.isSubstantive()) {
 			return new Concept(head.getWord() + tail.getWord(), head.getPos(), head.getDefine());
 		}
@@ -199,7 +199,7 @@ public class MyConceptParser extends ConceptParser {
 		if (ref == null || !ref.isSubstantive()) {
 			String define = tail.getDefine(); //define存放新的定义结果
 
-			//把第一个概念的定义合并到第二个上
+			// 把第一个概念的定义合并到第二个上
 			List<String> sememeList = getAllSememes(head, true);
 			for (String sememe : sememeList) {
 				if (!define.contains(sememe)) {
@@ -209,15 +209,15 @@ public class MyConceptParser extends ConceptParser {
 			return new Concept(head.getWord() + tail.getWord(), tail.getPos(), define);
 		}
 
-		//正常处理：参照概念非空，并且是实词概念
-		String define = tail.getMainSememe(); //define存放新的定义结果
+		// 正常处理：参照概念非空，并且是实词概念
+		String define = tail.getMainSememe(); // define存放新的定义结果
 
 		List<String> refSememes = getAllSememes(ref, false);
 		List<String> headSememes = getAllSememes(head, true);
 		List<String> tailSememes = getAllSememes(tail, false);
 
-		//如果参照概念与第二个概念的主义原的义原相似度大于阈值THETA，
-		//则限制组合概念定义中与第二个概念相关的义原部分为: 第二个概念的义原集合与参照概念义原集合的模糊交集
+		// 如果参照概念与第二个概念的主义原的义原相似度大于阈值THETA，
+		// 则限制组合概念定义中与第二个概念相关的义原部分为: 第二个概念的义原集合与参照概念义原集合的模糊交集
 		double main_similarity = sememeParser.getSimilarity(tail.getMainSememe(), ref.getMainSememe());
 		if (main_similarity >= PARAM_THETA) {
 			// 求交集
@@ -232,17 +232,17 @@ public class MyConceptParser extends ConceptParser {
 					}
 				}
 
-				//如果tail_sememe与参照概念中的相似度最大的义原经theta约束后超过阈值XI，则加入生成的组合概念定义中
+				// 如果tail_sememe与参照概念中的相似度最大的义原经theta约束后超过阈值XI，则加入生成的组合概念定义中
 				if (max_similarity * main_similarity >= PARAM_XI) {
 					define = define + "," + tail_sememe;
 					refSememes.remove(max_ref_sememe);
 				}
-			}//end for
+			}
 		} else {
 			define = tail.getDefine();
-		}//end if
+		}
 
-		//合并第一个概念的义原到组合概念定义中
+		// 合并第一个概念的义原到组合概念定义中
 		for (String head_sememe : headSememes) {
 			double max_similarity = 0.0;
 			String max_ref_sememe = "";
@@ -255,7 +255,7 @@ public class MyConceptParser extends ConceptParser {
 			}
 
 			if (main_similarity * max_similarity >= PARAM_OMEGA) {
-				//调整符号关系, 用参照概念的符号关系替换原符号关系, 通过把参照概念的非符号部分替换成前面义原的非符号内容即可
+				// 调整符号关系, 用参照概念的符号关系替换原符号关系, 通过把参照概念的非符号部分替换成前面义原的非符号内容即可
 				String sememe = max_ref_sememe.replace(getPureSememe(max_ref_sememe), getPureSememe(head_sememe));
 				if (!define.contains(sememe)) {
 					define = define + "," + sememe;
@@ -263,7 +263,7 @@ public class MyConceptParser extends ConceptParser {
 			} else if (!define.contains(head_sememe)) {
 				define = define + "," + head_sememe;
 			}
-		}//end for
+		}
 
 		return new Concept(head.getWord() + tail.getWord(), tail.getPos(), define);
 	}

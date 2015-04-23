@@ -158,7 +158,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>zx.soft.knn.classify.driver.KnnClassifyDriver</mainClass>
+							<mainClass>zx.soft.ui.Start</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>

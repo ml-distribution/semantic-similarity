@@ -14,7 +14,7 @@ import javax.swing.text.StyledEditorKit;
 
 /**
  * 关于xsimilarity项目的说明信息
- * 
+ *
  */
 public class About extends JFrame {
 
@@ -30,21 +30,21 @@ public class About extends JFrame {
 		editorPane.setContentType("text/html");
 		try {
 			URLClassLoader urlLoader = (URLClassLoader) About.class.getClassLoader();
-			String html = About.class.getPackage().getName().replaceAll("\\.", "/") + "/about.html";
+			String html = "data/about.html";
 			System.out.println(html);
-			URL url = urlLoader.findResource(html);//可以用html格式文件做你的帮助系统了
+			URL url = urlLoader.findResource(html); // 可以用html格式文件做你的帮助系统了
 			editorPane.setPage(url);
 		} catch (IOException e1) {
 			editorPane.setText(e1.getMessage());
 		}
-		//editorPane.setText("<html><body>个人主页：<a href='xiatian.irm.cn'>http://xiatian.irm.cn/</a></body></html>");
+		// editorPane.setText("<html><body>个人主页：<a href='xiatian.irm.cn'>http://xiatian.irm.cn/</a></body></html>");
 
 		mainPanel.add(new JScrollPane(editorPane), BorderLayout.CENTER);
 		return mainPanel;
 	}
 
 	public About() {
-		this.setTitle("关于XSimilarity");
+		this.setTitle("关于Semantic-Similarity");
 
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setPreferredSize(new Dimension(600, 400));

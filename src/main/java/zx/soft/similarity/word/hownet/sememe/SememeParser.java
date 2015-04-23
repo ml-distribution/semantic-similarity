@@ -31,9 +31,7 @@ public abstract class SememeParser implements HownetMeta, Similaritable {
 	private FastSimpleMap<String, Integer> sememeMap = null;
 
 	public SememeParser() throws IOException {
-		String sememeFile = getClass().getPackage().getName().replaceAll("\\.", "/") + "/sememe.dat";
-
-		InputStream input = this.getClass().getClassLoader().getResourceAsStream(sememeFile);
+		InputStream input = this.getClass().getClassLoader().getResourceAsStream("data/sememe.dat");
 		load(input, "UTF-8");
 	}
 
