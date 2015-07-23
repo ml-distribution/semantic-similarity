@@ -34,7 +34,7 @@ import zx.soft.similarity.word.hownet2.concept.XiaConceptParser;
 
 /**
  * 词语相似度计算面板
- * 
+ *
  */
 public class WordSimlarityUI extends JFrame {
 
@@ -84,7 +84,7 @@ public class WordSimlarityUI extends JFrame {
 
 	/**
 	 * 词语相似度的演示面板
-	 * 
+	 *
 	 * @return
 	 */
 	public static JPanel createPanel() {
@@ -176,7 +176,7 @@ public class WordSimlarityUI extends JFrame {
 				String text = "[" + word1 + "]与[" + word2 + "]的相似度为:";
 				text = text + "\n词林:" + Cilin.getInstance().getSimilarity(word1, word2);
 				text = text + "\n刘群:" + LiuConceptParser.getInstance().getSimilarity(word1, word2);
-				text = text + "\n夏天:" + XiaConceptParser.getInstance().getSimilarity(word1, word2);
+				text = text + "\n相似度值:" + XiaConceptParser.getInstance().getSimilarity(word1, word2);
 				text = text + "\n字面:" + new CharBasedSimilarity().getSimilarity(word1, word2);
 				text += "\n__________________________________\n";
 				text += result.getText();
